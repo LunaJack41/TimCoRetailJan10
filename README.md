@@ -1,2 +1,2 @@
-# TimCoRetailJan10
-New run at TimCo starting with Login
+# TimCo Retail Manager
+A retail management system built by TimCo Enterprise Solutions
