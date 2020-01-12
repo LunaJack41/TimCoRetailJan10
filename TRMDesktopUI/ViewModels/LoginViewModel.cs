@@ -71,7 +71,7 @@ namespace TRMDesktopUI.ViewModels
         }
 
 
-        public bool CanLogIn
+        public bool CanLogIn   //Can and Prop name is a Caliburn Micro item     
         {
             get
             {
@@ -101,9 +101,6 @@ namespace TRMDesktopUI.ViewModels
                 ErrorMessage = ex.Message;
             }
         }
-
-
-
 
     }
 }
