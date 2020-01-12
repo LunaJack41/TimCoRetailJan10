@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TRMDesktopUI.Helpers;
+using TRMDesktopUI.Library.Api;
 
 namespace TRMDesktopUI.ViewModels
 {
@@ -63,7 +64,7 @@ namespace TRMDesktopUI.ViewModels
             get { return _errorMessage; }
             set
             {
-                _errorMessage = value;    //this has to be before the lines below to see it
+                _errorMessage = value;
                 NotifyOfPropertyChange(() => IsErrorVisible);
                 NotifyOfPropertyChange(() => ErrorMessage);
             }
@@ -89,14 +90,20 @@ namespace TRMDesktopUI.ViewModels
         {
             try
             {
-                ErrorMessage = "";   //clears out the last error
+                ErrorMessage = "";
                 var result = await _apiHelper.Authenticate(UserName, Password);
+
+                // Capture more information about the user
+                await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
             }
             catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
             }
         }
+
+
+
 
     }
 }
