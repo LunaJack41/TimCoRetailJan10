@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using TRMDesktopUI.Library.Api;
 using TRMDesktopUI.Helpers;
-using TRMDesktopUI.ViewModels;
+using TRMDesktopUI.Library.Api;
 using TRMDesktopUI.Library.Models;
+using TRMDesktopUI.ViewModels;
 
 namespace TRMDesktopUI
 {
@@ -29,11 +29,12 @@ namespace TRMDesktopUI
 
         protected override void Configure()
         {
-            _container.Instance(_container);
+            _container.Instance(_container)
+                .PerRequest<IProductEndpoint, ProductEndpoint>();
 
             _container
                 .Singleton<IWindowManager, WindowManager>()
-                .Singleton<IEventAggregator, EventAggregator>()     // this particular EventAggregator is from Caliburn
+                .Singleton<IEventAggregator, EventAggregator>()
                 .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IAPIHelper, APIHelper>();
 
