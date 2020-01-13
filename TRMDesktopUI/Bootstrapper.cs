@@ -33,7 +33,7 @@ namespace TRMDesktopUI
 
             _container
                 .Singleton<IWindowManager, WindowManager>()
-                .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<IEventAggregator, EventAggregator>()     // this particular EventAggregator is from Caliburn
                 .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IAPIHelper, APIHelper>();
 
