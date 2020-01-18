@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TRMDesktopUI.EventModels;
 using TRMDesktopUI.Helpers;
@@ -12,7 +13,7 @@ namespace TRMDesktopUI.ViewModels
 {
     public class LoginViewModel : Screen
     {
-        private string _userName = "jim@gmail.com";
+        private string _userName = "yeti@gmail.com";
         private string _password = "Pwd12345.";
         private IAPIHelper _apiHelper;
         private IEventAggregator _events;
@@ -99,7 +100,7 @@ namespace TRMDesktopUI.ViewModels
                 // Capture more information about the user
                 await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
 
-                _events.PublishOnUIThread(new LogOnEvent());
+                await _events.PublishOnUIThreadAsync(new LogOnEvent(), new CancellationToken());
             }
             catch (Exception ex)
             {
